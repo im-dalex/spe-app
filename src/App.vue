@@ -23,7 +23,7 @@
   })
   export default class App extends Vue {
     @Getter loading!: boolean;
-   }
+  }
 </script>
 
 <style lang="scss">

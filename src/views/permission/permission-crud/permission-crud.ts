@@ -21,7 +21,7 @@ export default class PermissionCrud extends Vue {
         try {
             this.setLoading(true);
             const permission = (Number(this.permissionId) > 0) 
-                ? await httpClient.get(`permission/${this.permissionId}`) : {};
+                ? await httpClient.get(`permission/${this.permissionId}`) : { permissionTypeId: null};
             const permissionType: any[] = await httpClient.get('permissionType');
             this.permission = permission;
             this.options = this.options
@@ -31,7 +31,6 @@ export default class PermissionCrud extends Vue {
                         value: p.id
                     }))
                 );
-            console.log(permission)
         } catch (err) {
             console.error(err);
         } finally {
@@ -40,7 +39,22 @@ export default class PermissionCrud extends Vue {
     }
 
     cancel() {
-        this.$router.go(-1);
+        this.$bvModal.msgBoxConfirm('Estás seguro de cancelar esta acción?', {
+            title: 'Confirmar',
+            size: 'sm',
+            buttonSize: 'sm',
+            okVariant: 'danger',    
+            okTitle: 'Si',
+            cancelTitle: 'No',
+            footerClass: 'p-2',
+            centered: true
+        }).then( value => {
+            if (value) {
+                this.$router.go(-1);
+            }
+        }).catch(err => {
+            console.error(err);
+        });
     }
 
     async onSubmit(event: any) {

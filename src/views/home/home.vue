@@ -1,6 +1,22 @@
 <template>
   <div class="home">
-    <p>Home</p>
+    <h1></h1>
+    <b-container>
+      <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+        <b-row no-gutters>
+          <b-col md="6">
+            <b-card-img src="https://www.misfinanzasparaminegocio.com/wp-content/uploads/2018/08/permisos.jpg" alt="Image" class="rounded-0"></b-card-img>
+          </b-col>
+          <b-col md="6">
+            <b-card-body title="Sistema de Permisos Empresariales">
+              <b-card-text>
+                Gestiona los permisos de tus empleados de una manera confiable y eficiente.
+              </b-card-text>
+            </b-card-body>
+          </b-col>
+        </b-row>
+      </b-card>
+    </b-container>
   </div>
 </template>
 

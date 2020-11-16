@@ -35,7 +35,6 @@
                         :options="options"
                         required
                         v-model="permission.permissionTypeId"
-                        :value="null"
                         >
                             <template #first>
                                 <b-form-select-option :value="null" disabled>--Seleccione--</b-form-select-option>
