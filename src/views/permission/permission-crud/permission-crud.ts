@@ -1,14 +1,8 @@
 import httpClient from '@/core/api/httpClient';
 import { Component, Vue } from 'vue-property-decorator';
 import { Action } from 'vuex-class';
-import { ValidationObserver, ValidationProvider } from "vee-validate";
 
-@Component({
-    components: {
-        ValidationObserver: ValidationObserver,
-        ValidationProvider: ValidationProvider
-    }
-})
+@Component({})
 export default class PermissionCrud extends Vue {
     @Action setLoading!: (loading: boolean) => void;
 
@@ -84,7 +78,6 @@ export default class PermissionCrud extends Vue {
                     this.invalid = true;
                     return;
                 }
-
                 this.setLoading(true);
                 delete this.permission.permissionType;
                 if (this.permission.id > 0) {
