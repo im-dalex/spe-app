@@ -8,9 +8,6 @@
                 <b-button variant="warning" @click="navigate(data.item.id)">Editar</b-button> | 
                 <b-button variant="danger" @click="deleteItem(data.item.id)">Eliminar</b-button>
             </template>
-            <template #empty="scope">
-                <h4>{{ scope.emptyText }}</h4>
-            </template>
         </b-table>
     </div>
 </template>

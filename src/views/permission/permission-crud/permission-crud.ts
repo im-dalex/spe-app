@@ -1,8 +1,14 @@
 import httpClient from '@/core/api/httpClient';
 import { Component, Vue } from 'vue-property-decorator';
 import { Action } from 'vuex-class';
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
-@Component({})
+@Component({
+    components: {
+        ValidationObserver: ValidationObserver,
+        ValidationProvider: ValidationProvider
+    }
+})
 export default class PermissionCrud extends Vue {
     @Action setLoading!: (loading: boolean) => void;
 
@@ -12,6 +18,7 @@ export default class PermissionCrud extends Vue {
 
     permission: any = {};
     options: any[] = [];
+    invalid: boolean = false;
 
     created() {
         this.initData();
@@ -57,17 +64,36 @@ export default class PermissionCrud extends Vue {
         });
     }
 
-    async onSubmit(event: any) {
+    validateState(ref: string) {
+        const field: any = this.$validator.fields.find({ name: ref });
+        if (field && (field.dirty || field.validated)) 
+        {
+            return !this.$validator.errors.has(ref);
+        }
+        return null;
+    }
+
+    throwError(ref: string) {
+        return this.$validator.errors.items.find(e => e.field == ref)?.msg;
+    }
+
+    onSubmit() {
         try {
-            event.preventDefault();
-            this.setLoading(true);
-            delete this.permission.permissionType;
-            if (this.permission.id > 0) {
-                await httpClient.put(`permission/${this.permission.id}`,this.permission);
-            } else  {
-                await httpClient.post(`permission`,this.permission);
-            }
-            this.$router.go(-1);
+            this.$validator.validateAll().then(async result => {
+                if (!result) {
+                    this.invalid = true;
+                    return;
+                }
+
+                this.setLoading(true);
+                delete this.permission.permissionType;
+                if (this.permission.id > 0) {
+                    await httpClient.put(`permission/${this.permission.id}`,this.permission);
+                } else  {
+                    await httpClient.post(`permission`,this.permission);
+                }
+                this.$router.go(-1);
+            });
         } catch (err) {
             console.error(err);
         } finally {
