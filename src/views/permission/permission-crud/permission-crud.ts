@@ -58,8 +58,8 @@ export default class PermissionCrud extends Vue {
     }
 
     async onSubmit(event: any) {
-        event.preventDefault();
         try {
+            event.preventDefault();
             this.setLoading(true);
             delete this.permission.permissionType;
             if (this.permission.id > 0) {

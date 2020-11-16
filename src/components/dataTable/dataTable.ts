@@ -28,7 +28,7 @@ export default class DataTable extends Vue {
         });
     }
 
-    navigate(id: any) {
+    navigate(id: number) {
         this.$emit('navigate', id);
     }
 }

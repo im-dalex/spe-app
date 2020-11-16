@@ -57,11 +57,11 @@ export default class Permission extends Vue{
         }
     }
 
-    navigate(id: any) {
+    navigate(id: string) {
         this.$router.push({ name: 'permission-crud', params: { id } });
     }
 
-    async deleteItem(id: any) {
+    async deleteItem(id: number) {
         try {
             this.setLoading(true);
             await httpClient.delete(`permission/${id}`);
