@@ -47,14 +47,9 @@ export default class Permission extends Vue{
                 },
             ];
             this.items = response.map(r => ({
-                id: r.id,
-                employeeName: r.employeeName,
-                employeeLastName: r.employeeLastName,
-                permissionDate: r.permissionDate,
-                permissionTypeId: r.permissionTypeId,
+                ...r,
                 permissionType: r.permissionType.description
             }));
-            console.log(response);
         } catch (err) {
             console.error(err);
         } finally {
