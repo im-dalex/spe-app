@@ -9,24 +9,26 @@ export class HttpClient {
     constructor(baseUrl: string) {
         this.axios = axios.create({
             baseURL: baseUrl,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 
+                'Content-Type': 'application/json'
+            }
         });
     }
 
     public get(endpoint: string): Promise<any>{
-        return this.axios.get(endpoint).then((res: any) => res);
+        return this.axios.get(endpoint).then((res: any) => res.data);
     }
 
     public post(endpoint: string, data: any): Promise<any> {
-        return this.axios.post(`/${endpoint}`, data).then((res: any) => res);
+        return this.axios.post(`${endpoint}`, data).then((res: any) => res.data);
     }
 
     public put(endpoint: string, data: any): Promise<any> {
-        return this.axios.put(`/${endpoint}`, data).then((res: any) => res);
+        return this.axios.put(`${endpoint}`, data).then((res: any) => res.data);
     }
 
     public delete(endpoint: string): Promise<any> {
-        return this.axios.delete(`/${endpoint}`).then((res: any) => res);
+        return this.axios.delete(`${endpoint}`).then((res: any) => res.data);
     }
     
 }

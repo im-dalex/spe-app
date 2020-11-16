@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="md" type="dark" variant="info">
+    <b-navbar toggleable="md" type="dark" variant="info" class="mb-5">
 
         <b-navbar-brand href="#">Sistema de Permisos Empresariales</b-navbar-brand>
 

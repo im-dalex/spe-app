@@ -16,7 +16,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     name: 'permission-crud',
-    path: '/permission-crud',
+    path: '/permission-crud/:id',
     component: () => import('../views/permission/permission-crud/permission-crud.vue'),
     meta: {
       parent: "permission"
