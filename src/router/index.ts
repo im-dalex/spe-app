@@ -15,6 +15,14 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/permission/permission')
   },
   {
+    path: '/permission-crud/:id',
+    name: 'permission-crud',
+    component: () => import('../views/permission/permission'),
+    meta: {
+      parent: "permission"
+    }
+  },
+  {
     path: '*',
     component: () => import('../views/Error404.vue')
   }
