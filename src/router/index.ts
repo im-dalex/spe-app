@@ -1,23 +1,23 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
     name: 'home',
+    path: '/',
     component: () => import('../views/home/home.vue')
   },
   {
-    path: '/permission',
     name: 'permission',
-    component: () => import('../views/permission/permission')
+    path: '/permission',
+    component: () => import('../views/permission/permission.vue')
   },
   {
-    path: '/permission-crud/:id',
     name: 'permission-crud',
-    component: () => import('../views/permission/permission'),
+    path: '/permission-crud',
+    component: () => import('../views/permission/permission-crud/permission-crud.vue'),
     meta: {
       parent: "permission"
     }
@@ -26,11 +26,11 @@ const routes: Array<RouteConfig> = [
     path: '*',
     component: () => import('../views/Error404.vue')
   }
-]
+];
 
 const router = new VueRouter({
   mode: "history",
   routes
-})
+});
 
 export default router

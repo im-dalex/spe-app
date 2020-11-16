@@ -13,7 +13,7 @@ export class HttpClient {
         });
     }
 
-    public get(endpoint: string) : Promise<any>{
+    public get(endpoint: string): Promise<any>{
         return this.axios.get(endpoint).then((res: any) => res);
     }
 

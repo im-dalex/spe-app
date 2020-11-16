@@ -1,4 +1,4 @@
 <template>
-    <p>Hello Word!</p>
+    <p>{{msg}}</p>
 </template>
 <script lang="ts" src="./permission.ts"></script>
